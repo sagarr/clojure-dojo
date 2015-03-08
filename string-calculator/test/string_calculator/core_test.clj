@@ -13,3 +13,7 @@
 (deftest test-add-calculate-sum-when-two-numbers-passed
   (testing "add calculated sum when two numbers passed"
     (is (= (add "1, 2") 3))))
+
+(deftest test-negative-numbers-not-allowed
+  (testing "negative numbers not allowed"
+    (is (thrown? IllegalArgumentException (add "-1")))))
