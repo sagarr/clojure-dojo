@@ -16,4 +16,12 @@
 
 (deftest test-negative-numbers-not-allowed
   (testing "negative numbers not allowed"
-    (is (thrown? IllegalArgumentException (add "-1")))))
+    (is (thrown? IllegalArgumentException (add "-1, 2")))))
+
+(deftest test-negative-numbers-not-allowed-2
+  (testing "negative numbers not allowed 2"
+    (is (thrown? IllegalArgumentException (add "1, -2")))))
+
+(deftest test-custom-delimiter
+  (testing "custom delimiter"
+    (is (= (add ";1;2") 3))))
