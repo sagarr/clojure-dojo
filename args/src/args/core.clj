@@ -9,9 +9,10 @@
 )
 
 (defn parse [schema, arg]
-  (
-	(schema (keyword (str (get arg 1))))
-	(if (and (> (.length arg) 3) (not (clojure.string/blank? (subs arg 3 (.length arg))))) (read-string (subs arg 3 (.length arg)))
-	(default-value (schema (keyword (str (get arg 1))))))
-  )
+	(let [type (schema (keyword (str (get arg 1)))) arg-len (.length arg)]
+		(if (and (> arg-len 3) (not (clojure.string/blank? (subs arg 3 arg-len))))
+			(read-string (subs arg 3 arg-len))
+			(default-value type)
+		)
+	)
 )
