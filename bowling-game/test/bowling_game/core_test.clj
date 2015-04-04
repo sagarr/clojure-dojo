@@ -14,4 +14,12 @@
   (testing "game with one spare"
     (is (= (rolls (concat '(8 2 3) (repeat 17 0))) 16))
   )
+  
+  (testing "game with one strike"
+    (is (= (rolls (concat '(10 0 3 4) (repeat 16 0))) 24))
+  )
+  
+  (testing "game with all strike"
+    (is (= (rolls (repeat 10 10))) 300)
+  )
 )
