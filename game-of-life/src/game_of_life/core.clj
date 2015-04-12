@@ -1,10 +1,14 @@
 (ns game-of-life.core
   (:gen-class))
 
+(defn dead? [v] (= v 0))
+
+(defn alive? [v] (= v 1))
+
 (defn next-state [r c universe]
-    (let [
-       v (get (get universe r) c)
-       neighbours-sum (reduce +
+    (let [v (get (get universe r) c)
+       neighbours-sum
+       (reduce +
             (filter (complement nil?)
                 (conj nil
                 (get (get universe r) (inc c)) ; look in row
@@ -19,8 +23,8 @@
             )
       )]
       (cond
-        (and (= v 0) (= 3 neighbours-sum)) 1
-        (and (= v 1) (or (= 3 neighbours-sum) (= 2 neighbours-sum))) 1
+        (and (dead? v) (= 3 neighbours-sum)) 1
+        (and (alive? v) (or (= 3 neighbours-sum) (= 2 neighbours-sum))) 1
         :else 0
       )
     )
